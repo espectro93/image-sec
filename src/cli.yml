@@ -1,0 +1,18 @@
+name: image-sec
+version: "0.0.1"
+author: Steffen Gerdes <gerdes.steffen@googlemail.com>
+about: Encrypts and decryptsimages
+settings: ArgRequiredElseHelp
+args:
+  - encrypt:
+      short: e
+      long: encrypt
+      value_name: ENCRYPT
+      about: Specifies the image that we want to encrypt
+      takes_value: true
+  - decrypt:
+      short: d
+      long: decrypt
+      value_name: DECRYPT
+      about: Specifies the image that we want to decrypt
+      takes_value: true
