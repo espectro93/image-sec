@@ -4,6 +4,11 @@ use std::path::Path;
 use std::fs::{OpenOptions, File, FileType};
 use std::error::Error;
 use std::ffi::OsStr;
+use std::io::Read;
+use crate::crypt::encrypt;
+use std::fs;
+
+//TODO: use images crate to convert and delete exif files etc. use png? or bitmap then encrypt image
 
 struct ParsedImage {
     header: Vec<u8>,
@@ -12,10 +17,13 @@ struct ParsedImage {
 }
 
 impl ParsedImage {
-    fn from_file(file: File, file_extension: &str) -> Result<(), Box<dyn Error>> {
+    fn from_file(mut file: File, file_extension: &str) -> Result<(), Box<dyn Error>> {
         let metadata = file.metadata()?;
         if metadata.file_type().is_file() {
-            print!("jo");
+            let mut buffer: Vec<u8> = Vec::with_capacity(metadata.len() as usize);
+            file.read_to_end(&mut buffer).expect("buffer overflow");
+            let encrypted_content = encrypt(&buffer[8..]);
+            fs::write("/home/steffen/CLionProjects/image-sec/resources/test.jpg", encrypted_content).expect("Error during file write");
         }
         Ok(())
     }
