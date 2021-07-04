@@ -13,7 +13,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     match encrypt {
         Some(dir) => match encrypt_image(Path::new(dir)) {
             Ok(_) => println!("Image was successfully encrypted!"),
-            Err(e) => eprintln!("Error encrypting image")
+            Err(_) => eprintln!("Error encrypting image")
         },
         None => ()
     }
@@ -22,7 +22,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     match decrypt {
         Some(dir) => match decrypt_image(Path::new(dir)) {
             Ok(_) => println!("Image was successfully encrypted!"),
-            Err(e) => eprintln!("Error decrypting image")
+            Err(_) => eprintln!("Error decrypting image")
         },
         None => ()
     }
