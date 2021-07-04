@@ -4,7 +4,6 @@ use clap::{App, load_yaml};
 
 use image_sec::{encrypt_image, decrypt_image};
 
-// + create chrome extension that can decrypt those images/or platform where we can sahre images encrypted/decrypted
 fn main() -> Result<(), Box<dyn Error>> {
     let yaml = load_yaml!("cli.yml");
     let matches = App::from(yaml).get_matches();
